@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Fer ❤️</title>
+    <style>
+        :root {
+            --primary: #ff4d6d;
+            --bg: #ffe6ea;
+            --text: #590d22;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #main-content {
+            width: 90%;
+            max-width: 800px;
+            padding: 20px;
+            transition: all 1.5s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        h1, h2 {
+            text-align: center;
+            color: var(--primary);
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+
+        input[type="text"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 10px 0;
+            border: 2px solid #ffb3c1;
+            border-radius: 8px;
+            outline: none;
+        }
+
+        button {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            width: 100%;
+            transition: background 0.3s;
+        }
+
+        button:hover {
+            background-color: #c9184a;
+        }
+
+        #yt-player {
+            width: 100%;
+            height: 315px;
+            margin-top: 15px;
+            border-radius: 10px;
+            display: none;
+        }
+
+        .memory-row {
+            margin-bottom: 15px;
+        }
+
+        .memory-row label {
+            font-weight: bold;
+        }
+
+        /* --- ESTILOS DE LA ECUACIÓN DE DIRAC --- */
+        .dirac-equation {
+            font-size: 1.5em;
+            font-family: 'Times New Roman', serif;
+            font-weight: bold;
+            margin: 15px 0;
+            color: #800f2f;
+            text-align: center;
+        }
+
+        .dirac-visual {
+            position: relative;
+            width: 100%;
+            height: 120px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .particle {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            position: absolute;
+            animation: orbit 4s infinite ease-in-out;
+        }
+
+        .particle-1 {
+            background-color: var(--primary);
+            box-shadow: 0 0 20px var(--primary);
+            animation-name: orbit1;
+        }
+
+        .particle-2 {
+            background-color: #ff99ac;
+            box-shadow: 0 0 20px #ff99ac;
+            animation-name: orbit2;
+        }
+
+        @keyframes orbit1 {
+            0% { transform: translateX(50px) scale(1); z-index: 2; }
+            25% { transform: translateX(0px) scale(0.8); z-index: 1; }
+            50% { transform: translateX(-50px) scale(1); z-index: 2; }
+            75% { transform: translateX(0px) scale(1.2); z-index: 3; }
+            100% { transform: translateX(50px) scale(1); z-index: 2; }
+        }
+
+        @keyframes orbit2 {
+            0% { transform: translateX(-50px) scale(1); z-index: 2; }
+            25% { transform: translateX(0px) scale(1.2); z-index: 3; }
+            50% { transform: translateX(50px) scale(1); z-index: 2; }
+            75% { transform: translateX(0px) scale(0.8); z-index: 1; }
+            100% { transform: translateX(-50px) scale(1); z-index: 2; }
+        }
+        /* --------------------------------------- */
+
+        /* Animación de Envoltura de Regalo */
+        .wrap-animation {
+            transform: scale(0.01) rotate(720deg);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* Pantalla de Cumpleaños */
+        #birthday-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            background: linear-gradient(135deg, #ff4d6d, #800f2f);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 1s ease-in-out;
+            z-index: 100;
+            text-align: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .show-birthday {
+            opacity: 1 !important;
+            visibility: visible !important;
+        }
+
+        .bouncing-text {
+            font-size: 3em;
+            animation: bounce 2s infinite;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-30px); }
+            60% { transform: translateY(-15px); }
+        }
+
+        #final-song-list {
+            background: rgba(255,255,255,0.2);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 20px;
+            text-align: left;
+            max-height: 40vh;
+            overflow-y: auto;
+        }
+
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+
+    <div id="main-content">
+        <h1>Para ti ❤️</h1>
+        
+        <div class="card">
+            <h2>Nuestra Banda Sonora</h2>
+            <p>Dime una canción que te encante, pega el enlace de YouTube y la guardaremos en nuestra lista.</p>
+            <input type="text" id="song-name" placeholder="Nombre de la canción (Ej. Perfect - Ed Sheeran)">
+            <input type="text" id="yt-link" placeholder="Enlace de YouTube">
+            <button onclick="playAndSaveSong()">Reproducir y Guardar</button>
+            <iframe id="yt-player" src="" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        </div>
+
+        <div class="card">
+            <h2>Minijuego: Conectando Recuerdos</h2>
+            <p>Escribe el nombre de la canción que te viene a la mente con cada uno de estos momentos entre nosotros:</p>
+            
+            <div class="memory-row">
+                <label>1. Nuestro primer beso:</label>
+                <input type="text" class="memory-song" placeholder="¿Qué canción sonaría de fondo?">
+            </div>
+            <div class="memory-row">
+                <label>2. Nuestro lugar favorito:</label>
+                <input type="text" class="memory-song" placeholder="La canción que nos transporta ahí...">
+            </div>
+            <div class="memory-row">
+                <label>3. Un momento en el que no paramos de reír:</label>
+                <input type="text" class="memory-song" placeholder="Tu canción elegida...">
+            </div>
+            
+            <button onclick="saveMemories()">Guardar Mis Respuestas</button>
+            <p id="memory-feedback" style="color: green; display: none; text-align: center; margin-top: 10px;">¡Respuestas guardadas!</p>
+        </div>
+
+        <div class="card">
+            <h2>Nuestra Ecuación</h2>
+            <p>En la física, esta fórmula predijo la existencia de la antimateria: la idea de que para cada partícula en el universo, existe una contraparte exacta que la complementa perfectamente.</p>
+            
+            <div class="dirac-equation">
+                (i&hbar;&gamma;<sup>&mu;</sup>&part;<sub>&mu;</sub> - mc)&psi; = 0
+            </div>
+            
+            <p style="font-size: 0.9em; font-style: italic; text-align: center;">"Si dos sistemas interactúan entre sí durante cierto periodo de tiempo y luego se separan, ya no pueden describirse como dos sistemas distintos, sino como un único sistema. Lo que le ocurre a uno, sigue afectando al otro."</p>
+            
+            <div class="dirac-visual">
+                <div class="particle particle-1"></div>
+                <div class="particle particle-2"></div>
+            </div>
+        </div>
+
+        <button onclick="triggerFinale()" style="background-color: #800f2f; margin-bottom: 50px;">Tengo una sorpresa más...</button>
+    </div>
+
+    <div id="birthday-screen">
+        <h1 class="bouncing-text">¡Feliz Cumpleaños, Fer mi amor! 🎉</h1>
+        <p style="font-size: 1.2em; max-width: 600px;">Que este día sea tan increíble y especial como tú. Aquí está el registro de las canciones que elegiste hoy, para que se conviertan en nuestra nueva playlist:</p>
+        
+        <div id="final-song-list">
+            <ul id="song-ul"></ul>
+        </div>
+    </div>
+
+    <script>
+        // Array global para guardar las canciones
+        let savedSongs = [];
+
+        // Función para extraer el ID de YouTube del enlace
+        function extractVideoID(url) {
+            const regex = /(?:youtube\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/;
+            const match = url.match(regex);
+            return match ? match[1] : null;
+        }
+
+        // Función para el reproductor
+        function playAndSaveSong() {
+            const nameInput = document.getElementById('song-name').value;
+            const linkInput = document.getElementById('yt-link').value;
+            const player = document.getElementById('yt-player');
+
+            if (!nameInput || !linkInput) {
+                alert('Por favor, escribe el nombre y pega el enlace.');
+                return;
+            }
+
+            const videoId = extractVideoID(linkInput);
+            if (videoId) {
+                savedSongs.push(`🎵 ${nameInput} (Sección de YouTube)`);
+                player.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+                player.style.display = 'block';
+
+                document.getElementById('song-name').value = '';
+                document.getElementById('yt-link').value = '';
+            } else {
+                alert('Enlace de YouTube no válido. Intenta copiarlo desde el navegador o la app.');
+            }
+        }
+
+        // Función para guardar las canciones del minijuego
+        function saveMemories() {
+            const inputs = document.querySelectorAll('.memory-song');
+            let allFilled = true;
+
+            inputs.forEach((input, index) => {
+                if(input.value.trim() !== '') {
+                    let memoryLabel = "";
+                    if(index === 0) memoryLabel = "Nuestro primer beso";
+                    if(index === 1) memoryLabel = "Nuestro lugar favorito";
+                    if(index === 2) memoryLabel = "Cuando no paramos de reír";
+                    
+                    savedSongs.push(`✨ ${input.value} (Recuerdo: ${memoryLabel})`);
+                } else {
+                    allFilled = false;
+                }
+            });
+
+            if(!allFilled) {
+                alert('¡Intenta llenar todos los recuerdos con una canción!');
+                return;
+            }
+
+            document.getElementById('memory-feedback').style.display = 'block';
+            inputs.forEach(input => input.disabled = true);
+        }
+
+        // Función para la animación final
+        function triggerFinale() {
+            const mainContent = document.getElementById('main-content');
+            const birthdayScreen = document.getElementById('birthday-screen');
+            const songUl = document.getElementById('song-ul');
+
+            // Efecto visual que "envuelve" la página
+            mainContent.classList.add('wrap-animation');
+
+            // Poblar la lista final de canciones
+            songUl.innerHTML = '';
+            if(savedSongs.length === 0) {
+                songUl.innerHTML = '<li>Aún no guardaste canciones, ¡pero nuestra playlist sigue creciendo!</li>';
+            } else {
+                savedSongs.forEach(song => {
+                    let li = document.createElement('li');
+                    li.textContent = song;
+                    songUl.appendChild(li);
+                });
+            }
+
+            // Esperar a que termine la animación para mostrar el cumpleaños
+            setTimeout(() => {
+                mainContent.style.display = 'none';
+                birthdayScreen.classList.add('show-birthday');
+            }, 1200); 
+        }
+    </script>
+</body>
+</html>
